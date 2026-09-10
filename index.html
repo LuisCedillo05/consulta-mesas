@@ -2,38 +2,71 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
 <title>Consulta tu Mesa</title>
  
 <style>
  
 body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#fff5f8;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+}
+ 
+.card{
+background:white;
+width:90%;
+max-width:500px;
+padding:40px;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,0.15);
 text-align:center;
-font-family:Arial;
-margin-top:50px;
 }
  
 h1{
 color:#E91E63;
-}
- 
-button{
-background:#E91E63;
-color:white;
-border:none;
-padding:12px 25px;
-border-radius:8px;
-cursor:pointer;
+margin-bottom:30px;
 }
  
 input{
-padding:10px;
-width:250px;
+width:90%;
+padding:15px;
+border:1px solid #ddd;
+border-radius:10px;
+font-size:18px;
+}
+ 
+button{
+margin-top:20px;
+background:#E91E63;
+color:white;
+border:none;
+padding:15px 30px;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+}
+ 
+button:hover{
+background:#d81b60;
+}
+ 
+#resultado{
+margin-top:30px;
+font-size:22px;
 }
  
 </style>
- 
 </head>
+ 
 <body>
+ 
+<div class="card">
  
 <h1>Consulta tu Mesa</h1>
  
@@ -42,7 +75,7 @@ id="txtNombre"
 type="text"
 placeholder="Escribe tu nombre completo">
  
-<br><br>
+<br>
  
 <button id="btnConsultar">
 Consultar
@@ -50,24 +83,15 @@ Consultar
  
 <div id="resultado"></div>
  
+</div>
+ 
 <script>
  
 const invitados = [
  
-{
-nombre:"Luis Cedillo",
-mesa:"1"
-},
- 
-{
-nombre:"Juan Pérez",
-mesa:"12"
-},
- 
-{
-nombre:"Maria Lopez",
-mesa:"8"
-}
+{ nombre:"Luis Cedillo", mesa:"1" },
+{ nombre:"Juan Pérez", mesa:"12" },
+{ nombre:"Maria Lopez", mesa:"8" }
  
 ];
  
@@ -89,14 +113,15 @@ if(invitado){
  
 document.getElementById("resultado").innerHTML =
 `
-<h2>${invitado.nombre}</h2>
-<h2>Mesa ${invitado.mesa}</h2>
+<h2 style="color:#E91E63;">INVITACIÓN</h2>
+<p>${invitado.nombre}</p>
+<p><strong>Mesa ${invitado.mesa}</strong></p>
 `;
  
 }else{
  
 document.getElementById("resultado").innerHTML =
-"<h2>Invitado no encontrado</h2>";
+"<p>Invitado no encontrado</p>";
  
 }
  
