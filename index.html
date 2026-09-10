@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Consulta tu Mesa</title>
+ 
+<style>
+ 
+body{
+text-align:center;
+font-family:Arial;
+margin-top:50px;
+}
+ 
+h1{
+color:#E91E63;
+}
+ 
+button{
+background:#E91E63;
+color:white;
+border:none;
+padding:12px 25px;
+border-radius:8px;
+cursor:pointer;
+}
+ 
+input{
+padding:10px;
+width:250px;
+}
+ 
+</style>
+ 
+</head>
+<body>
+ 
+<h1>Consulta tu Mesa</h1>
+ 
+<input
+id="txtNombre"
+type="text"
+placeholder="Escribe tu nombre completo">
+ 
+<br><br>
+ 
+<button id="btnConsultar">
+Consultar
+</button>
+ 
+<div id="resultado"></div>
+ 
+<script>
+ 
+const invitados = [
+ 
+{
+nombre:"Luis Cedillo",
+mesa:"1"
+},
+ 
+{
+nombre:"Juan Pérez",
+mesa:"12"
+},
+ 
+{
+nombre:"Maria Lopez",
+mesa:"8"
+}
+ 
+];
+ 
+document.getElementById("btnConsultar")
+.addEventListener("click", function(){
+ 
+const nombre =
+document.getElementById("txtNombre")
+.value
+.trim()
+.toLowerCase();
+ 
+const invitado =
+invitados.find(
+x => x.nombre.toLowerCase() === nombre
+);
+ 
+if(invitado){
+ 
+document.getElementById("resultado").innerHTML =
+`
+<h2>${invitado.nombre}</h2>
+<h2>Mesa ${invitado.mesa}</h2>
+`;
+ 
+}else{
+ 
+document.getElementById("resultado").innerHTML =
+"<h2>Invitado no encontrado</h2>";
+ 
+}
+ 
+});
+ 
+</script>
+ 
+</body>
+</html>
