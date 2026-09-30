@@ -476,25 +476,48 @@ if(invitado){
 document.getElementById("resultado").innerHTML =
  
 `
-<div class="invitacion">
+<div style="
+background:white;
+padding:25px;
+margin-top:25px;
+border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+text-align:center;
+">
  
-<h2 style="color:#E91E63;">
+<h2 style="
+color:#E91E63;
+margin-bottom:15px;
+">
+INVITACIÓN
 </h2>
  
-<div class="nombre">
+<div style="
+font-size:28px;
+font-weight:bold;
+color:#E91E63;
+margin-bottom:15px;
+">
 ${invitado.nombre}
 </div>
  
-<div class="mesa">
-Mesa ${invitado.mesa}
+<div style="
+font-size:22px;
+font-weight:bold;
+color:#E91E63;
+margin-bottom:15px;
+">
+Mesa ${invitado.mesa || "Por asignar"}
 </div>
  
-<div class="mensaje">
+<div style="
+color:#666;
+">
+¡Te esperamos!
 </div>
  
 </div>
-`;
- 
+`; 
 }else{
  
 document.getElementById("resultado").innerHTML =
