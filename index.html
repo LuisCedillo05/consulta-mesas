@@ -7,15 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
  
 <title>Consulta tu Mesa</title>
-
  
 <style>
-  .logo{
-width:300px;
-max-width:100%;
-display:block;
-margin:20px auto;
-}
  
 *{
 margin:0;
@@ -26,7 +19,9 @@ box-sizing:border-box;
 body{
 font-family: Arial, sans-serif;
 background: linear-gradient(135deg,#FFF0F6,#FFD9E8);
+ 
 min-height:100vh;
+ 
 display:flex;
 justify-content:center;
 align-items:center;
@@ -35,32 +30,39 @@ align-items:center;
 .container{
  
 background:white;
+ 
 width:90%;
 max-width:600px;
- padding:40px;
- border-radius:20px;
  
-box-shadow:
-0 10px 30px rgba(0,0,0,0.15);
+padding:40px;
+ 
+border-radius:20px;
+ 
+box-shadow:0 10px 30px rgba(0,0,0,.15);
  
 text-align:center;
-  margin:auto;
+ 
+}
+ 
+.logo{
+width:250px;
+max-width:100%;
+display:block;
+margin:20px auto;
 }
  
 h1{
 color:#E91E63;
-margin-bottom:15px;
+margin-bottom:10px;
 }
  
 .subtitulo{
- 
-color:#777;
+color:#E91E63;
 margin-bottom:30px;
- 
+font-size:18px;
 }
  
 input{
- 
 width:100%;
 padding:15px;
  
@@ -88,59 +90,42 @@ padding:15px 35px;
 font-size:18px;
  
 cursor:pointer;
- 
-transition:.3s;
 }
  
 button:hover{
- 
 background:#D81B60;
- 
 }
  
 #resultado{
- 
 margin-top:30px;
 }
  
 .invitacion{
- 
 border-top:2px solid #FFD1E0;
- 
 margin-top:25px;
- 
 padding-top:25px;
 }
  
 .nombre{
- 
-font-size:28px;
- 
+font-size:30px;
 color:#E91E63;
- 
 font-weight:bold;
- 
 margin:15px 0;
 }
  
 .mesa{
- 
 font-size:24px;
- 
+color:#E91E63;
 font-weight:bold;
 }
  
 .mensaje{
- 
-color:#666;
- 
+color:#E91E63;
 margin-top:15px;
 }
  
 .error{
- 
 color:red;
- 
 margin-top:20px;
 }
  
@@ -152,12 +137,13 @@ margin-top:20px;
  
 <div class="container">
  
-<h1> Consulta tu Mesa </h1>
-    <img
-    src="logo-Dinner-in-Pink.png"
-    alt="Logo Dinner in Pink"
-    class="Logo"
-    >
+<h1>Consulta tu Mesa</h1>
+ 
+<img
+src="logo-Dinner-in-Pink.png"
+alt="Logo Dinner in Pink"
+class="logo"
+>
  
 <p class="subtitulo">
 Dinner in Pink 2026
@@ -166,7 +152,8 @@ Dinner in Pink 2026
 <input
 id="txtNombre"
 type="text"
-placeholder="Escribe tu nombre completo">
+placeholder="Escribe tu nombre completo"
+>
  
 <button id="btnConsultar">
 Consultar
@@ -449,9 +436,7 @@ document
  
 const nombreBuscado =
 normalizar(
-document
-.getElementById("txtNombre")
-.value
+document.getElementById("txtNombre").value
 );
  
 const invitado =
@@ -461,14 +446,14 @@ normalizar(x.nombre) === nombreBuscado
  
 if(invitado){
  
-document
-.getElementById("resultado")
-.innerHTML =
+document.getElementById("resultado").innerHTML =
  
 `
 <div class="invitacion">
  
-<h2>🎉 INVITACIÓN 🎉</h2>
+<h2 style="color:#E91E63;">
+INVITACIÓN
+</h2>
  
 <div class="nombre">
 ${invitado.nombre}
@@ -487,9 +472,7 @@ Mesa ${invitado.mesa}
  
 }else{
  
-document
-.getElementById("resultado")
-.innerHTML =
+document.getElementById("resultado").innerHTML =
  
 `
 <div class="error">
@@ -504,5 +487,4 @@ Invitado no encontrado
 </script>
  
 </body>
- 
 </html>
