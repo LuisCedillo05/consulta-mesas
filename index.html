@@ -1,215 +1,174 @@
 <!DOCTYPE html>
 <html lang="es">
- 
+
 <head>
- 
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
+<title>Consulta tu Mesa</title>
 
- 
 <style>
- 
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
 }
- 
+
+html{
+-webkit-text-size-adjust:100%;
+text-size-adjust:100%;
+}
+
 body{
-margin:0;
-padding:20px;
+padding:16px;
 font-family:Arial,sans-serif;
-background:linear-gradient(135deg,#F8BBD0,#F8BBD0);
- 
+background:#F8BBD0;
 min-height:100vh;
- 
+min-height:100dvh;
 display:flex;
 justify-content:center;
 align-items:center;
 }
-``
- 
+
 .container{
 background:white;
-width:95%;
-max-width:500px;
-padding:25px;
+width:100%;
+max-width:480px;
+padding:24px 20px;
 border-radius:20px;
 box-shadow:0 10px 30px rgba(0,0,0,.15);
 text-align:center;
 }
 
- 
-CSS
+h1{
+font-size:26px;
+color:#D81B60;
+margin-bottom:10px;
+}
+
 .logos{
 display:flex;
 justify-content:center;
 align-items:center;
-gap:20px;
-margin:15px 0;
+margin:10px 0 20px;
 }
- 
+
 .logo-principal{
-width:180px;
-max-width:55%;
+width:160px;
+max-width:60%;
 height:auto;
 }
- 
-.logo-secundario{
-width:90px;
-max-width:30%;
-height:auto;
-}
+
 input{
 display:block;
-width:90%;
-max-width:450px;
-margin:0 auto;
-padding:18px;
+width:100%;
+padding:14px;
 border:2px solid #F3C1D7;
 border-radius:15px;
-font-size:20px;
+font-size:17px; /* 16px o más evita que el iPhone haga zoom al escribir */
 text-align:center;
+-webkit-appearance:none;
+appearance:none;
 }
-}
- input::placeholder{
-font-size:22px;
+
+input::placeholder{
+font-size:16px;
 color:#B8B8B8;
-text-align:center;
 }
-`` 
+
+input:focus{
+outline:none;
+border-color:#D81B60;
+}
+
 button{
 display:block;
-width:90%;
-max-width:450px;
-margin:15px auto 0 auto;
-padding:18px;
+width:100%;
+margin-top:12px;
+padding:14px;
 background:#D81B60;
-color:white; 
+color:white;
 border:none;
 border-radius:15px;
-font-size:20px;
+font-size:18px;
 font-weight:bold;
- cursor:pointer;
+cursor:pointer;
+-webkit-appearance:none;
+appearance:none;
 }
- 
-button:placehover{
-background:#D81B60;
- text-align:center;
+
+button:active{
+background:#AD1457;
 }
- 
+
 #resultado{
-margin-top:30px;
-}
- 
- 
-.nombre{
-font-size:30px;
-color:#F8BBD0;
-font-weight:bold;
-margin:15px 0;
-}
- 
-.mesa{
-font-size:24px;
-color:#F8BBD0;
-font-weight:bold;
-}
- 
-.mensaje{
-color:#F8BBD0;
-margin-top:15px;
-}
- 
-.error{
-color:pink;
 margin-top:20px;
 }
-@media screen and (max-width: 600px){
- 
-#txtNombre{
-width:90% !important;
-max-width:90% !important;
- 
-display:block !important;
- 
-margin-left:auto !important;
-margin-right:auto !important;
-}
- 
-#btnConsultar{
-width:90% !important;
-max-width:90% !important;
- 
-display:block !important;
- 
-margin-left:auto !important;
-margin-right:auto !important;
- 
-margin-top:15px !important;
-}
- 
-#resultado{
-width:90% !important;
-margin-left:auto !important;
-margin-right:auto !important;
-text-align:center !important;
-}
- 
+
+.tarjeta{
+background:#FFF5F8;
+padding:18px;
+border-radius:16px;
+border:2px solid #F8BBD0;
 }
 
- @media screen and (max-width: 600px){
- 
-.container{
-text-align:center !important;
-}
- 
-input,
-button{
-margin:auto !important;
-}
- 
+.nombre{
+font-size:20px;
+font-weight:bold;
+color:#D81B60;
+margin-bottom:8px;
+word-wrap:break-word;
 }
 
- 
+.mesa{
+font-size:22px;
+font-weight:bold;
+color:#AD1457;
+}
+
+.error{
+color:#D81B60;
+font-size:16px;
+}
+
 </style>
- 
+
 </head>
- 
+
 <body>
- 
+
 <div class="container">
- 
+
 <h1>Consulta tu Mesa</h1>
- 
+
 <div class="logos">
- 
 <img
 src="Dinner3.png"
 alt="Dinner in Pink"
 class="logo-principal"
 >
- 
+</div>
+
 <input
 id="txtNombre"
 type="text"
 placeholder="Escribe tu nombre completo"
+autocomplete="off"
 >
- 
+
 <button id="btnConsultar">
 Consultar
 </button>
 
-
 <div id="resultado"></div>
- 
+
 </div>
- 
+
 <script>
- 
+
 const invitados = [
- 
+
 { nombre:"Antonio Figueroa", mesa:"22" },
 { nombre:"Verónica Ponce", mesa:"22" },
 { nombre:"Celina Boullosa", mesa:"22" },
@@ -219,7 +178,7 @@ const invitados = [
 { nombre:"Federico Mestre", mesa:"22" },
 { nombre:"Begoña Larrea", mesa:"22" },
 { nombre:"Jorge Ramírez", mesa:"22" },
-{ nombre:"Paola Hinojosa", mesa:"22" }, 
+{ nombre:"Paola Hinojosa", mesa:"22" },
 { nombre:"Oscar Espinosa", mesa:"18" },
 { nombre:"Marilú Lara", mesa:"18" },
 { nombre:"Marco Wosk", mesa:"18" },
@@ -230,7 +189,7 @@ const invitados = [
 { nombre:"Marísa Díaz", mesa:"18" },
 { nombre:"Francisco Rodríguez", mesa:"18" },
 { nombre:"Sandy Rodríguez", mesa:"18" },
-{ nombre:"Arturo Rodríguez Núñez", mesa:"21" },  
+{ nombre:"Arturo Rodríguez Núñez", mesa:"21" },
 { nombre:"Xavier Ezeta", mesa:"10" },
 { nombre:"Alicia Boy", mesa:"" },
 { nombre:"Juan Carlos Álvarez", mesa:"13" },
@@ -244,7 +203,7 @@ const invitados = [
 { nombre:"Marisa Zannie", mesa:"8" },
 { nombre:"Adriana Jiménez ", mesa:"8" },
 { nombre:"Rubén Mora", mesa:"2" },
-{ nombre:"Luis Reina", mesa:"2" },  
+{ nombre:"Luis Reina", mesa:"2" },
 { nombre:"Montserrat Martínez", mesa:"2" },
 { nombre:"Pedro Breton", mesa:"2" },
 { nombre:"Enrique Calderón", mesa:"" },
@@ -272,15 +231,13 @@ const invitados = [
 { nombre:"Camila Altamirano", mesa:"4" },
 { nombre:"Silvia Herrera", mesa:"4" },
 { nombre:"Héctor Meza", mesa:"4" },
-{ nombre:"", mesa:"" },
 { nombre:"David Caliz", mesa:"3" },
 { nombre:"Regina Lázaro", mesa:"3" },
 { nombre:"Ceci  Valdez", mesa:"3" },
 { nombre:"Dany Warholtz", mesa:"3" },
-{ nombre:"María Angelica Lopez", mesa:"3" },  
+{ nombre:"María Angelica Lopez", mesa:"3" },
 { nombre:"Mariano Garcés", mesa:"3" },
 { nombre:"Acela Meza", mesa:"3" },
-{ nombre:"", mesa:"" },
 { nombre:"Xavier Ezeta", mesa:"" },
 { nombre:"Arturo Grapa", mesa:"17" },
 { nombre:"Memo Martínez", mesa:"15" },
@@ -293,7 +250,7 @@ const invitados = [
 { nombre:"José Mauricio González Sierra", mesa:"4" },
 { nombre:"Rodrigo Betancourt", mesa:"21" },
 { nombre:"Rodrigo Betancourt", mesa:"21" },
-{ nombre:"Dana Berry", mesa:"" },  
+{ nombre:"Dana Berry", mesa:"" },
 { nombre:"Dana Berry", mesa:"" },
 { nombre:"Kevin Montes de Oca Ríos", mesa:"7" },
 { nombre:"Alexia Michel Ramos Gallardo", mesa:"7" },
@@ -303,7 +260,7 @@ const invitados = [
 { nombre:"Rous Borbón", mesa:"21" },
 { nombre:"Laura Medina", mesa:"2" },
 { nombre:"Laura Medina", mesa:"2" },
-{ nombre:"Matías Roca", mesa:"9" },  
+{ nombre:"Matías Roca", mesa:"9" },
 { nombre:"Matías Roca", mesa:"9" },
 { nombre:"Monica Prieto Santacruz", mesa:"9" },
 { nombre:"Tania Popovic", mesa:"21" },
@@ -312,7 +269,7 @@ const invitados = [
 { nombre:"Luisa Serna", mesa:"" },
 { nombre:"Lillian Toro", mesa:"9" },
 { nombre:"Nathalia Domínguez", mesa:"9" },
-{ nombre:"Nathalia Domínguez", mesa:"9" },  
+{ nombre:"Nathalia Domínguez", mesa:"9" },
 { nombre:"Ernesto Mercado", mesa:"17" },
 { nombre:"Renata Urbina", mesa:"9" },
 { nombre:"Renata Urbina", mesa:"9" },
@@ -321,7 +278,7 @@ const invitados = [
 { nombre:"Patricio Sayrols", mesa:"10" },
 { nombre:"Patricio Sayrols", mesa:"10" },
 { nombre:"Walo Gómez", mesa:"" },
-{ nombre:"Nahomi Galván", mesa:"" },  
+{ nombre:"Nahomi Galván", mesa:"" },
 { nombre:"Erika González", mesa:"" },
 { nombre:"Jorge Sales", mesa:"21" },
 { nombre:"Sylvia Rivera Jáuregui", mesa:"" },
@@ -334,7 +291,7 @@ const invitados = [
 { nombre:"Sarahí Arroyo", mesa:"" },
 { nombre:"Isa Serio", mesa:"10" },
 { nombre:"Eduardo Serio", mesa:"10" },
-{ nombre:"Ana Kuri", mesa:"16" },  
+{ nombre:"Ana Kuri", mesa:"16" },
 { nombre:"Hans Kritzner", mesa:"16" },
 { nombre:"David Fonseca", mesa:"20" },
 { nombre:"Pronto", mesa:"" },
@@ -345,7 +302,7 @@ const invitados = [
 { nombre:"Claudia Torres", mesa:"20" },
 { nombre:"Verónica Gutiérrez", mesa:"20" },
 { nombre:"Maribel Trejo", mesa:"20" },
-{ nombre:"Soledad Durazo", mesa:"20" },  
+{ nombre:"Soledad Durazo", mesa:"20" },
 { nombre:"Juliette Nagar", mesa:"20" },
 { nombre:"Francisco Suárez", mesa:"" },
 { nombre:"Jose Luis Morel", mesa:"19" },
@@ -358,10 +315,10 @@ const invitados = [
 { nombre:"Regina Hernández", mesa:"19" },
 { nombre:"Diego del Valle", mesa:"19" },
 { nombre:"Anna Franchello", mesa:"19" },
-{ nombre:"Manuel Quintero", mesa:"" },  
+{ nombre:"Manuel Quintero", mesa:"" },
 { nombre:"Eduardo Sabates", mesa:"13" },
 { nombre:"Lorenzo Ruiz", mesa:"14" },
-{ nombre:"Abraham Askenazi", mesa:"" },  
+{ nombre:"Abraham Askenazi", mesa:"" },
 { nombre:"Fred Askenazi", mesa:"" },
 { nombre:"Andrés Sing", mesa:"14" },
 { nombre:"Anel García", mesa:"14" },
@@ -369,7 +326,7 @@ const invitados = [
 { nombre:"Luis Gómez", mesa:"13" },
 { nombre:"Enrique Santiago", mesa:"13" },
 { nombre:"Pablo García Castelán", mesa:"13" },
-{ nombre:"Hugo Camu", mesa:"14" },  
+{ nombre:"Hugo Camu", mesa:"14" },
 { nombre:"Raúl Camu", mesa:"14" },
 { nombre:"Raúl Camu", mesa:"14" },
 { nombre:"Lorena Gómez", mesa:"13" },
@@ -380,7 +337,7 @@ const invitados = [
 { nombre:"Paty Hanono", mesa:"15" },
 { nombre:"Arturo Hanono ", mesa:"15" },
 { nombre:"Juan Carlos González", mesa:"8" },
-{ nombre:"Raúl Rico", mesa:"21" },  
+{ nombre:"Raúl Rico", mesa:"21" },
 { nombre:"Cinthya Copelli", mesa:"12" },
 { nombre:"Monica Calvillo", mesa:"12" },
 { nombre:"Luis Manuel Arenas Manzano", mesa:"12" },
@@ -391,7 +348,7 @@ const invitados = [
 { nombre:"Danae Guerra Fuentes", mesa:"11" },
 { nombre:"Francisco Pérez Penilla", mesa:"11" },
 { nombre:"Daniela Tellez Palacios", mesa:"11" },
-{ nombre:"Diego Rodriguez Acosta", mesa:"11" },  
+{ nombre:"Diego Rodriguez Acosta", mesa:"11" },
 { nombre:"Erika Chacón Moya", mesa:"11" },
 { nombre:"Luigui Lomparte", mesa:"11" },
 { nombre:"Cristina Lomparte", mesa:"11" },
@@ -402,7 +359,7 @@ const invitados = [
 { nombre:"Iliana Goerne", mesa:"6" },
 { nombre:"Luz Baez", mesa:"6" },
 { nombre:"Axia", mesa:"6" },
-{ nombre:"Ximena Silva", mesa:"6" },  
+{ nombre:"Ximena Silva", mesa:"6" },
 { nombre:"Bibiana Rebolledo", mesa:"6" },
 { nombre:"Alejandra Dollet", mesa:"6" },
 { nombre:"David Hernandez", mesa:"6" },
@@ -413,7 +370,7 @@ const invitados = [
 { nombre:"Luis Enrique Jiménez", mesa:"5" },
 { nombre:"Adriana Macías Vargas", mesa:"5" },
 { nombre:"Lluvia Mailene Hernández", mesa:"5" },
-{ nombre:"Verónica Paola Hierro", mesa:"5" },  
+{ nombre:"Verónica Paola Hierro", mesa:"5" },
 { nombre:"Bertha Ludivina Zayas", mesa:"5" },
 { nombre:"Verónica Guadalupe Cruz Ramos", mesa:"5" },
 { nombre:"Ericka Liliana Amador", mesa:"5" },
@@ -424,115 +381,62 @@ const invitados = [
 { nombre:"Lilian del Toro", mesa:"4" },
 { nombre:"Fernando Balcázar", mesa:"4" },
 { nombre:"Eva Gurría", mesa:"4" },
-{ nombre:"Maria Galland Torrelemus", mesa:"5" },  
+{ nombre:"Maria Galland Torrelemus", mesa:"5" },
 { nombre:"José Miguel Machimbarrena", mesa:"15" },
 { nombre:"Sol González", mesa:"4" },
 { nombre:"Kanaus", mesa:"1" },
-{ nombre:"", mesa:"" },
-{ nombre:"", mesa:"" },
-{ nombre:"", mesa:"" },
-{ nombre:"", mesa:"" },
-{ nombre:"", mesa:"" },
-{ nombre:"", mesa:"" },
-{ nombre:"", mesa:"" },
-{ nombre:"", mesa:"" },  
-{ nombre:"", mesa:"" },
-{ nombre:"", mesa:"" },
-{ nombre:"", mesa:"" },
-{ nombre:"", mesa:"" },
-{ nombre:"", mesa:"" },
-{ nombre:"", mesa:"" },
-{ nombre:"", mesa:"" },
-{ nombre:"", mesa:"" },
-{ nombre:"", mesa:"" },
-{ nombre:"", mesa:"" },
-{ nombre:"", mesa:"" },  
-{ nombre:"", mesa:"" },
-{ nombre:"", mesa:"" },
-{ nombre:"", mesa:"" },  
 { nombre:"Ana Torres", mesa:"3" }
- 
+
 ];
- 
+
 function normalizar(texto){
- 
 return texto
 .toLowerCase()
 .normalize("NFD")
 .replace(/[\u0300-\u036f]/g,"")
+.replace(/\s+/g," ")
 .trim();
- 
 }
- 
-document
-.getElementById("btnConsultar")
-.addEventListener("click", function(){
- 
-const nombreBuscado =
-normalizar(
-document.getElementById("txtNombre").value
-);
- 
-const invitado =
-invitados.find(x =>
-normalizar(x.nombre) === nombreBuscado
-);
- 
-if(invitado){
- 
-document.getElementById("resultado").innerHTML =
- 
-`
-<div style="
-background:white;
-padding:25px;
-margin-top:25px;
-border-radius:20px;
-box-shadow:0 5px 15px rgba(0,0,0,.15);
-text-align:center;
-">
- 
 
-<div style="
-font-size:28px;
-font-weight:bold;
-color:#F8BBD0;
-margin-bottom:15px;
-">
-${invitado.nombre}
-</div>
- 
-<div style="
-font-size:22px;
-font-weight:bold;
-color:#F8BBD0;
-margin-bottom:15px;
-">
-Mesa ${invitado.mesa || "Por asignar"}
-</div>
- 
-<div style="
-color:#F8BBD0;
-">
-</div>
- 
-</div>
-`; 
-}else{
- 
-document.getElementById("resultado").innerHTML =
- 
-`
-<div class="error">
-Invitado no encontrado
+function consultar(){
+
+const input = document.getElementById("txtNombre");
+const resultado = document.getElementById("resultado");
+const nombreBuscado = normalizar(input.value);
+
+if(!nombreBuscado){
+resultado.innerHTML = `<div class="error">Escribe tu nombre para consultar</div>`;
+return;
+}
+
+const coincidencias = invitados.filter(x => normalizar(x.nombre) === nombreBuscado);
+
+// Si el nombre aparece varias veces, se prefiere el registro que sí tiene mesa
+const invitado = coincidencias.find(x => x.mesa) || coincidencias[0];
+
+if(invitado){
+resultado.innerHTML = `
+<div class="tarjeta">
+<div class="nombre">${invitado.nombre.trim()}</div>
+<div class="mesa">Mesa ${invitado.mesa || "por asignar"}</div>
 </div>
 `;
- 
+}else{
+resultado.innerHTML = `<div class="error">Invitado no encontrado</div>`;
 }
- 
+
+input.blur(); // cierra el teclado del iPhone para que se vea el resultado
+}
+
+document.getElementById("btnConsultar").addEventListener("click", consultar);
+
+document.getElementById("txtNombre").addEventListener("keydown", function(e){
+if(e.key === "Enter"){
+consultar();
+}
 });
- 
+
 </script>
- 
+
 </body>
 </html>
